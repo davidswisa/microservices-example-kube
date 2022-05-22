@@ -6,6 +6,16 @@ build-kube:
 	rm -rf kube/*
 	cd kube && kompose convert -f ../docker-compose.yml
 
+run-kube:
+	# kubectl apply $(ls test*.yaml | awk ' { print " -f " $1 } ')
+	kubectl apply $(ls test*.yaml | awk ' { print " -f " $$1 } ')
+
+kube-clean:
+	kubectl delete deployments --all
+	kubectl delete services --all
+	kubectl delete pods --all
+	kubectl delete daemonset --all
+
 run-prod:
 	docker stop prod
 	docker-compose up -d --build prod
