@@ -2,6 +2,10 @@ run:
 	docker-compose up -d --build
 	# docker-compose up -d --build db kafka zookeeper  
 
+build-kube:
+	rm -rf kube/*
+	cd kube && kompose convert -f ../docker-compose.yml
+
 run-prod:
 	docker stop prod
 	docker-compose up -d --build prod

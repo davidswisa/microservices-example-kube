@@ -18,7 +18,7 @@ curl -sSLf https://get.k0s.sh | sudo sh
 
 
 https://www.youtube.com/watch?v=aHPGf6FsY7Y
-
+https://computingforgeeks.com/deploy-kubernetes-cluster-on-linux-with-k0s/
 
 
 
