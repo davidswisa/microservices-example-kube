@@ -17,6 +17,13 @@ curl -sSLf https://get.k0s.sh | sudo sh
 
 
 
+https://www.youtube.com/watch?v=aHPGf6FsY7Y
+
+
+
+
+
+
 TODO:
 
 hardcoded ip need to fix in ui/index.html and prod/main.go
