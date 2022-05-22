@@ -15,5 +15,7 @@ spec:
     targetPort: 8084
   selector:
     io.kompose.service: ui
+  externalTrafficPolicy: Local 
+  type: LoadBalancer
 status:
   loadBalancer: {}

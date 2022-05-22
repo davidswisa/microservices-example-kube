@@ -1,7 +1,7 @@
 version: '3.5'
 
 networks:
-  test_network:
+  test-network:
     ipam:
       driver: default
       config:
@@ -18,7 +18,7 @@ services:
     ports:
     - "2181:2181"
     networks:
-      test_network:
+      test-network:
         ipv4_address: 20.10.1.2
 
   kafka:
@@ -33,7 +33,7 @@ services:
     - '8082:8082'
     - '8083:8083'
     networks:
-      test_network:
+      test-network:
         ipv4_address: 20.10.1.3
 
   db:
@@ -47,7 +47,7 @@ services:
     ports:
     - '5432:5432'
     networks:
-      test_network:
+      test-network:
         ipv4_address: 20.10.1.4
     
   prod:
@@ -64,7 +64,7 @@ services:
     ports:
     - '8080:8080'
     networks:
-      test_network:
+      test-network:
         ipv4_address: 20.10.1.5
 
   cons:
@@ -79,7 +79,7 @@ services:
     restart: always
     # restart: unless-stopped
     networks:
-      test_network:
+      test-network:
         ipv4_address: 20.10.1.6
 
   querier:
@@ -94,7 +94,7 @@ services:
     environment:
       API_HOST: 20.10.1.8
     networks:
-      test_network:
+      test-network:
         ipv4_address: 20.10.1.7
 
   orm:
@@ -108,7 +108,7 @@ services:
     ports:
     - '5431:5431'
     networks:
-      test_network:
+      test-network:
         ipv4_address: 20.10.1.8
 
   discovery:
@@ -119,7 +119,7 @@ services:
     ports:
       - '5555:5555'
     networks:
-      test_network:
+      test-network:
         ipv4_address: 20.10.1.9
 
   ui:
@@ -131,6 +131,9 @@ services:
     #   - ./ui/index.html:/go/index.html
     ports:
     - '8084:8084'
+    expose: 
+    - 8084
+
     networks:
-      test_network:
+      test-network:
         ipv4_address: 20.10.1.10

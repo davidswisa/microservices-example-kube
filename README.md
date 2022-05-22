@@ -28,3 +28,7 @@ TODO:
 
 hardcoded ip need to fix in ui/index.html and prod/main.go
 http://10.144.74.86/
+
+
+replace network apiVersion: networking.k8s.io/v1
+networking.k8s.io/v1
