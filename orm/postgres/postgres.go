@@ -58,7 +58,7 @@ func New() (*Instance, error) {
 
 func (i *Instance) discover() error {
 	// TODO: Change to environment variable
-	res, err := http.Get("http://20.10.1.9:5555/postgres")
+	res, err := http.Get("http://discovery:5555/postgres")
 	if err != nil {
 		return err
 	}

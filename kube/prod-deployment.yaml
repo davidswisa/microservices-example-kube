@@ -27,7 +27,7 @@ spec:
       containers:
       - env:
         - name: kafka
-          value: 20.10.1.3
+          value: kafka
         image: microservices-example-kube_prod:latest
         imagePullPolicy: "IfNotPresent"
         name: prod

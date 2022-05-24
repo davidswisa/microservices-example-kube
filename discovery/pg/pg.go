@@ -23,7 +23,7 @@ func (i PGInfo) String() string {
 }
 
 const (
-	pgHost     string = "20.10.1.4"
+	pgHost     string = "db"
 	pgPort     int    = 5432
 	pgUser     string = "postgres"
 	pgPassword string = "postgres"
