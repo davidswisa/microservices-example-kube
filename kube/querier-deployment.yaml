@@ -27,12 +27,13 @@ spec:
       containers:
       - env:
         - name: API_HOST
-          value: 20.10.1.8
+          value: orm
         image: microservices-example-kube_querier:latest
         imagePullPolicy: "IfNotPresent"
         name: querier
         ports:
         - containerPort: 8081
+          hostPort: 8081
         resources: {}
       restartPolicy: Always
       serviceAccountName: ""

@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue May 24 06:54:50 2022
+# Make data base, printed on Tue May 24 13:39:48 2022
 
 # Variables
 
@@ -57,7 +59,7 @@ LESSOPEN = | /usr/bin/lesspipe %s
 # environment
 VSCODE_CWD = /root
 # environment
-SSH_CONNECTION = 172.18.185.147 59770 10.144.74.86 22
+SSH_CONNECTION = 172.18.185.147 58764 10.144.74.86 22
 # environment
 PATH = /root/.vscode-server/bin/da15b6fd3ef856477bf6f4fb29ba1b7af717770d/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/go/bin
 # environment
@@ -65,7 +67,9 @@ XDG_RUNTIME_DIR = /run/user/0
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /run/user/0/vscode-ipc-813d2f32-37d9-4c28-96ef-71e42becb622.sock
+VSCODE_IPC_HOOK_CLI = /run/user/0/vscode-ipc-3391f954-c20f-49c0-860c-c0c81407070a.sock
+# environment
+KUBECONFIG = /etc/rancher/k3s/k3s.yaml
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -125,7 +129,7 @@ MAKEFLAGS = pqrR
 # environment
 MFLAGS = -pqrR
 # environment
-SSH_CLIENT = 172.18.185.147 59770 22
+SSH_CLIENT = 172.18.185.147 58764 22
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
@@ -159,7 +163,7 @@ VSCODE_EXTHOST_WILL_SEND_SOCKET = true
 # environment
 MOTD_SHOWN = pam
 # variable set hash-table stats:
-# Load=74/1024=7%, Rehash=0, Collisions=9/99=9%
+# Load=75/1024=7%, Rehash=0, Collisions=9/100=9%
 
 # Pattern-specific Variable Values
 
@@ -181,7 +185,7 @@ run-querier:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 45):
+#  recipe to execute (from 'Makefile', line 42):
 	docker stop querier
 	docker-compose up -d --build querier
 
@@ -189,7 +193,7 @@ run-orm:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 37):
+#  recipe to execute (from 'Makefile', line 34):
 	docker stop orm
 	docker-compose up -d --build orm
 
@@ -204,13 +208,13 @@ prod:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 49):
+#  recipe to execute (from 'Makefile', line 46):
 	go run ./prod/main.go
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-24 06:25:09.05629626
+#  Last modified 2022-05-24 12:53:09.826603543
 #  File has been updated.
 #  Successfully updated.
 
@@ -218,36 +222,35 @@ test:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 61):
+#  recipe to execute (from 'Makefile', line 58):
 	scripts/send_request.sh
+
+build:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 6):
+	docker-compose build
 
 querier:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 55):
+#  recipe to execute (from 'Makefile', line 52):
 	go run ./querier/main.go
-
-run-kube:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 10):
-	# kubectl apply $(ls test*.yaml | awk ' { print " -f " $1 } ')
-	kubectl apply $$(ls test*.yaml | awk ' { print " -f " $$1 } ')
 
 orm:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 58):
+#  recipe to execute (from 'Makefile', line 55):
 	go run ./orm/main.go
 
 run-ui:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 41):
+#  recipe to execute (from 'Makefile', line 38):
 	docker stop ui
 	docker-compose up -d --build ui
 
@@ -263,31 +266,29 @@ run:
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 2):
 	docker-compose up -d --build
-	# docker-compose up -d --build db kafka zookeeper  
+	# docker-compose up -d --build db kafka zookeeper
 
-kube0-run:
+kube-run:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 14):
-	k0s kubectl apply -f kube
+#  recipe to execute (from 'Makefile', line 17):
+	kubectl apply -f kube
 
 kube-gen:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 6):
+#  recipe to execute (from 'Makefile', line 9):
 	rm -rf kube/*
+ 
 	cd kube && kompose convert -f ../docker-compose.yml
 
 run-prod:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
-make: *** No rule to make target 'all'.  Stop.
-
-#  recipe to execute (from 'Makefile', line 29):
+#  recipe to execute (from 'Makefile', line 26):
 	docker stop prod
 	docker-compose up -d --build prod
 
@@ -295,7 +296,7 @@ run-cons:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 33):
+#  recipe to execute (from 'Makefile', line 30):
 	docker stop cons
 	docker-compose up -d --build cons
 
@@ -303,7 +304,7 @@ kube-clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 17):
+#  recipe to execute (from 'Makefile', line 20):
 	kubectl delete deployments --all
 	kubectl delete services --all
 	kubectl delete pods --all
@@ -313,33 +314,23 @@ cons:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 52):
+#  recipe to execute (from 'Makefile', line 49):
 	go run ./cons/main.go
 
-kube0-clean:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 23):
-	k0s kubectl delete deployments --all
-	k0s kubectl delete services --all
-	k0s kubectl delete pods --all
-	k0s kubectl delete daemonset --all
-
 # files hash-table stats:
-# Load=20/1024=2%, Rehash=0, Collisions=0/30=0%
+# Load=19/1024=2%, Rehash=0, Collisions=0/29=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 39 / storage = 318 B / avg = 8 B
-# current buf: size = 8162 B / used = 318 B / count = 39 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 38 / storage = 302 B / avg = 7 B
+# current buf: size = 8162 B / used = 302 B / count = 38 / avg = 7 B
 
-# strcache performance: lookups = 63 / hit rate = 38%
+# strcache performance: lookups = 61 / hit rate = 37%
 # hash-table stats:
-# Load=39/8192=0%, Rehash=0, Collisions=1/63=2%
-# Finished Make data base on Tue May 24 06:54:50 2022
+# Load=38/8192=0%, Rehash=0, Collisions=1/61=2%
+# Finished Make data base on Tue May 24 13:39:48 2022
 
  

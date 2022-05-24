@@ -36,3 +36,6 @@ apiVersion: networking.k8s.io/v1
 replace all services image value:
 - image: microservices-example-kube_ui:latest
 imagePullPolicy: "IfNotPresent"
+
+add to deployment the proper port to expose:
+hostPort: 8080

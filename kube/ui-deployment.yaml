@@ -30,6 +30,7 @@ spec:
         name: ui
         ports:
         - containerPort: 8084
+          hostPort: 8084
         resources: {}
       restartPolicy: Always
       serviceAccountName: ""

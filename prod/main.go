@@ -159,7 +159,7 @@ func main() {
 	router.HandleFunc("/reservations/{id:[0-9]+}", updateHandler(kafkaWriter)).Methods(http.MethodPut, http.MethodOptions)
 
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://10.144.74.86:8084", "http://10.144.74.86:8080", "http://10.144.74.86:8081"},
+		AllowedOrigins:   []string{"http://localhost:8084", "http://localhost:8080", "http://localhost:8081"},
 		AllowedMethods:   []string{http.MethodGet, http.MethodPost, http.MethodPut, http.MethodDelete},
 		AllowCredentials: true,
 		// Enable Debugging for testing, consider disabling in production

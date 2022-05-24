@@ -1,6 +1,9 @@
 run:
 	docker-compose up -d --build
-	# docker-compose up -d --build db kafka zookeeper  
+	# docker-compose up -d --build db kafka zookeeper
+
+build:
+	docker-compose build
 
 kube-gen:
 	rm -rf kube/*

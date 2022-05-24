@@ -30,6 +30,7 @@ spec:
         name: orm
         ports:
         - containerPort: 5431
+          hostPort: 5431
         resources: {}
       restartPolicy: Always
       serviceAccountName: ""

@@ -33,6 +33,7 @@ spec:
         name: prod
         ports:
         - containerPort: 8080
+          hostPort: 8080
         resources: {}
       restartPolicy: Always
       serviceAccountName: ""
