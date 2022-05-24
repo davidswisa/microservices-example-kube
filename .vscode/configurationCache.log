@@ -1,0 +1,1 @@
+{"buildTargets":["cons","kube-clean","kube-gen","kube0-clean","kube0-run","make","orm","prod","querier","run","run-cons","run-kube","run-orm","run-prod","run-querier","run-ui","test"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}

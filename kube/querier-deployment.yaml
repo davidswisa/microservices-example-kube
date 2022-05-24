@@ -28,8 +28,8 @@ spec:
       - env:
         - name: API_HOST
           value: 20.10.1.8
-        image: querier
-        imagePullPolicy: ""
+        image: microservices-example-kube_querier:latest
+        imagePullPolicy: "IfNotPresent"
         name: querier
         ports:
         - containerPort: 8081

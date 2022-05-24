@@ -25,8 +25,8 @@ spec:
         io.kompose.service: orm
     spec:
       containers:
-      - image: orm
-        imagePullPolicy: ""
+      - image: microservices-example-kube_orm:latest
+        imagePullPolicy: "IfNotPresent"
         name: orm
         ports:
         - containerPort: 5431

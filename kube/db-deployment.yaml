@@ -32,8 +32,8 @@ spec:
           value: postgres
         - name: POSTGRES_USER
           value: postgres
-        image: db
-        imagePullPolicy: ""
+        image: microservices-example-kube_db:latest
+        imagePullPolicy: "IfNotPresent"
         name: db
         ports:
         - containerPort: 5432

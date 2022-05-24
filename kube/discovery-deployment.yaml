@@ -25,8 +25,8 @@ spec:
         io.kompose.service: discovery
     spec:
       containers:
-      - image: discovery
-        imagePullPolicy: ""
+      - image: microservices-example-kube_discovery:latest
+        imagePullPolicy: "IfNotPresent"
         name: discovery
         ports:
         - containerPort: 5555
