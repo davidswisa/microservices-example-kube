@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl --location --request POST 'http://localhost:8080/reservations' \
+curl --location --request POST 'http://prod:8080/reservations' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "id": 1,

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl --location --request POST 'http://localhost:5431/reservations' \
+curl --location --request POST 'http://orm:5431/reservations' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "id": 1,
