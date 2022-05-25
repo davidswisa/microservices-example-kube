@@ -4,38 +4,37 @@ microservices-example-kube
 
 
 steps:
-install kompose
-$ go get -u github.com/kubernetes/kompose
+We used Kompose in order to convert the majority of the docker-compose file conveniently.
+
+Installing Kompose:
+```bash
+go get -u github.com/kubernetes/kompose
+```
 
 follow:
 https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/
 
-install k0s
-curl -sSLf https://get.k0s.sh | sudo sh
+install k3s with docker as the container runtime:
+```bash
+curl -sfL https://get.k3s.io | sh -s - --docker
+```
 
+### Changes Notes:
 
-
-
-
-https://www.youtube.com/watch?v=aHPGf6FsY7Y
-https://computingforgeeks.com/deploy-kubernetes-cluster-on-linux-with-k0s/
-
-
-
-
-
-TODO:
-
-hardcoded ip need to fix in ui/index.html and prod/main.go
-http://10.144.74.86/
-
-
-replace network api version:
+- Replace network api version to the default one:
+```yaml
 apiVersion: networking.k8s.io/v1
+```
 
-replace all services image value:
+- Replace all services image value:
+    - After using `docker-compose build` this change allows pulling from the local docker registry (when using docker as the container runtime)
+```yaml
 - image: microservices-example-kube_ui:latest
-imagePullPolicy: "IfNotPresent"
+  imagePullPolicy: "IfNotPresent"
+```
 
-add to deployment the proper port to expose:
+- Add to deployment the port to expose out to the host:
+    - This allows access to the pods from the host machine.
+```yaml
 hostPort: 8080
+```
