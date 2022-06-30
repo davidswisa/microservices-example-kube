@@ -201,7 +201,7 @@
 <script type="text/javascript">
     function submitNewOrder(){
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:8080/reservations", true);
+        xhr.open("POST", "/reservations", true);
         xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
         
         var Name = document.getElementById("Name").value
@@ -243,7 +243,7 @@
         var objCells = parent.cells;
         var Id = objCells.item(0).innerHTML
         var xhr = new XMLHttpRequest();
-        var url = "http://localhost:8080/reservations/"+ Id;
+        var url = "/reservations/"+ Id;
         xhr.open("DELETE", url, true);
         // xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
         xhr.send();
@@ -264,7 +264,7 @@
         };
         
         var xhr = new XMLHttpRequest();
-        xhr.open("PUT", "http://localhost:8080/reservations/"+ Id, true);
+        xhr.open("PUT", "/reservations/"+ Id, true);
         xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
         
         console.log( j );
@@ -342,7 +342,7 @@
           // tblBody = newTblBody;
         }
       };
-      xhr.open("GET", "http://localhost:8081/reservations", true);
+      xhr.open("GET", "/reservations", true);
       xhr.send();
       
       setTimeout(tableUpdate, 5000);
