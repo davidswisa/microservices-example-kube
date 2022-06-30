@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -21,32 +22,78 @@ func gui() func(http.ResponseWriter, *http.Request) {
 
 func reservations() func(http.ResponseWriter, *http.Request) {
 	return http.HandlerFunc(func(wrt http.ResponseWriter, req *http.Request) {
+		content := "{}"
+		params := mux.Vars(req)
+		id := params["id"]
+		fmt.Println(id)
+
+		payload, err := ioutil.ReadAll(req.Body)
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+
 		switch req.Method {
 		case "GET":
-			fmt.Println("Time to wake up!")
-			// xhr.open("GET", "http://localhost:8081/reservations", true);
+
+			resp, err := http.Get("http://querier:8081/reservations")
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+			defer resp.Body.Close()
+			body, err := ioutil.ReadAll(resp.Body)
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+			content = string(body)
+			fmt.Println(string(body))
 
 		case "POST":
-			fmt.Println("Time to go to bed.")
-			// xhr.open("POST", "http://localhost:8080/reservations", true);
+			resp, err := http.Post("http://prod:8080/reservations", "Application/json", bytes.NewReader(payload))
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+			if resp.StatusCode != 200 {
+				fmt.Println(resp.StatusCode)
+			}
 
 		case "PUT":
-			fmt.Println("Time to wake up!")
-			// xhr.open("PUT", "http://localhost:8080/reservations/"+ Id, true);
+
+			req, err := http.NewRequest(http.MethodPut, "http://prod:8080/reservations/"+id, bytes.NewReader(payload))
+			if err != nil {
+				panic(err)
+			}
+
+			req.Header.Set("Content-Type", "application/json")
+			client := &http.Client{}
+			resp, err := client.Do(req)
+			if err != nil {
+				panic(err)
+			}
+			if resp.StatusCode != 200 {
+				fmt.Println(resp.StatusCode)
+			}
 
 		case "DELETE":
 			fmt.Println("Time to go to bed.")
-			// var url = "http://localhost:8080/reservations/"+ Id;
+			req, err := http.NewRequest(http.MethodDelete, "http://prod:8080/reservations/"+id, bytes.NewReader(payload))
+			if err != nil {
+				panic(err)
+			}
+
+			req.Header.Set("Content-Type", "application/json")
+			client := &http.Client{}
+			resp, err := client.Do(req)
+			if err != nil {
+				panic(err)
+			}
+			if resp.StatusCode != 200 {
+				fmt.Println(resp.StatusCode)
+			}
 
 		default:
 			fmt.Println("error")
 		}
 
-		params := mux.Vars(req)
-		id := params["id"]
-		fmt.Println(id)
-
-		content := "{}"
 		wrt.Write([]byte(content))
 	})
 }
