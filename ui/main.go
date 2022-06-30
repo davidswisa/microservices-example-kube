@@ -5,6 +5,8 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func gui() func(http.ResponseWriter, *http.Request) {
@@ -22,16 +24,28 @@ func reservations() func(http.ResponseWriter, *http.Request) {
 		switch req.Method {
 		case "GET":
 			fmt.Println("Time to wake up!")
+			// xhr.open("GET", "http://localhost:8081/reservations", true);
+
 		case "POST":
 			fmt.Println("Time to go to bed.")
+			// xhr.open("POST", "http://localhost:8080/reservations", true);
+
 		case "PUT":
 			fmt.Println("Time to wake up!")
+			// xhr.open("PUT", "http://localhost:8080/reservations/"+ Id, true);
+
 		case "DELETE":
 			fmt.Println("Time to go to bed.")
+			// var url = "http://localhost:8080/reservations/"+ Id;
+
 		default:
 			fmt.Println("error")
 		}
-		// fmt.Println(req.Method)
+
+		params := mux.Vars(req)
+		id := params["id"]
+		fmt.Println(id)
+
 		content := "{}"
 		wrt.Write([]byte(content))
 	})
@@ -46,13 +60,16 @@ func faviconHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	r := mux.NewRouter()
 
 	// Add handle func for producer.
-	http.HandleFunc("/", gui())
-	http.HandleFunc("/reservations", reservations())
-	http.HandleFunc("/images/restaurant-circular.svg", imagesHandler)
-	http.HandleFunc("/favicon.ico", faviconHandler)
+	r.HandleFunc("/", gui())
+	r.HandleFunc("/reservations", reservations())
+	r.HandleFunc("/reservations/{id}", reservations())
+	r.HandleFunc("/images/restaurant-circular.svg", imagesHandler)
+	r.HandleFunc("/favicon.ico", faviconHandler)
 
+	http.Handle("/", r)
 	// Run the web server.
 	fmt.Println("starting web server...")
 	log.Fatal(http.ListenAndServe(":8084", nil))

@@ -20,3 +20,4 @@
 !.vscode/microservices-example-kube.code-workspace
 !.vscode/settings.json
 
+ui/__debug_bin
