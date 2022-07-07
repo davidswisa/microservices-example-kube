@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    # app: guestbook
+    io.kompose.service: ui
+  # name: guestbook
+  name: ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      # app:  guestbook
+      io.kompose.service: ui
+  template:
+    metadata:
+      labels:
+        # app: guestbook
+        # io.kompose.network/test-network: "true"
+        io.kompose.service: ui
+    spec:
+      containers:
+      - image: microservices-example-kube_ui:latest
+        imagePullPolicy: "IfNotPresent"
+        # name: guestbook
+        name: ui
+        ports:
+        - containerPort: 8084
+          name: http-server
+          protocol: TCP
