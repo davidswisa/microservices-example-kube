@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: cons
+  name: cons
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: cons
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: cons
+    spec:
+      containers:
+      - env:
+        - name: API_HOST
+          value: orm
+        - name: kafka
+          value: kafka
+        image: microservices-example-kube_cons:latest
+        imagePullPolicy: "IfNotPresent"
+        name: cons
+        resources: {}
+      restartPolicy: Always
+
