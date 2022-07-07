@@ -2,6 +2,9 @@ run:
 	docker-compose up -d --build
 	# docker-compose up -d --build db kafka zookeeper
 
+run2:
+	kubectl apply -f ./test
+
 build:
 	docker-compose build
 
@@ -21,6 +24,7 @@ kube-clean:
 	kubectl delete services --all
 	kubectl delete pods --all
 	kubectl delete daemonset --all
+	kubectl delete NetworkPolicy --all
 
 run-prod:
 	docker stop prod
