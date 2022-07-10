@@ -2,10 +2,7 @@ package postgres
 
 import (
 	"database/sql"
-	// "encoding/json"
 	"fmt"
-	// "io/ioutil"
-	// "net/http"
 
 	"github.com/davidswisa/microservices-example-kube/pkg/reservation"
 
@@ -66,18 +63,6 @@ func New() (*Instance, error) {
 }
 
 func (i *Instance) discover() error {
-	// TODO: Change to environment variable
-	// res, err := http.Get("http://discovery:5555/postgres")
-	// if err != nil {
-	// 	return err
-	// }
-
-	// defer res.Body.Close()
-	// b, err := ioutil.ReadAll(res.Body)
-	// if err != nil {
-	// 	return err
-	// }
-	// pginfo := PGInfo{}
 
 	pgInfo := PGInfo{
 		DB:   pgDatabase,
@@ -87,10 +72,6 @@ func (i *Instance) discover() error {
 		SSL:  pgSslMode,
 		User: pgUser,
 	}
-	// err := json.Unmarshal(b, &pginfo)
-	// if err != nil {
-	// 	return err
-	// }
 
 	i.info = fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=%s",
 		pgInfo.Host, pgInfo.Port, pgInfo.User, pgInfo.Pass, pgInfo.DB, pgInfo.SSL)
