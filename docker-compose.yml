@@ -25,7 +25,7 @@ services:
     image: wurstmeister/kafka
     container_name: kafka
     env_file:
-    - kafka-broker/kafka-variables.env
+    - services/kafka-broker/kafka-variables.env
     depends_on:
     - zookeeper
     ports:
@@ -38,7 +38,7 @@ services:
 
   db:
     # image: postgres
-    build: ./db
+    build: ./services/db
     container_name: db
     environment:
       POSTGRES_DB: postgres
@@ -51,7 +51,7 @@ services:
         ipv4_address: 20.10.1.4
     
   prod:
-    build: ./prod
+    build: ./services/prod
       # context: .
       # dockerfile: Dockerfile-prod
     container_name: prod
@@ -68,7 +68,7 @@ services:
         ipv4_address: 20.10.1.5
 
   cons:
-    build: ./cons
+    build: ./services/cons
       # context: ./cons
       # dockerfile: Dockerfile-cons
     container_name: cons
@@ -83,7 +83,7 @@ services:
         ipv4_address: 20.10.1.6
 
   querier:
-    build: ./querier
+    build: ./services/querier
     container_name: querier
     restart: always
     # restart: unless-stopped
@@ -98,7 +98,7 @@ services:
         ipv4_address: 20.10.1.7
 
   orm:
-    build: ./orm
+    build: ./services/orm
     container_name: orm
     restart: always
     # restart: unless-stopped
@@ -112,7 +112,7 @@ services:
         ipv4_address: 20.10.1.8
 
   discovery:
-    build: ./discovery
+    build: ./services/discovery
     container_name: discovery
     restart: always
     # restart: unless-stopped
@@ -124,7 +124,7 @@ services:
 
   ui:
     build: 
-      context: ui
+      context: ./services/ui
       dockerfile: Dockerfile
     container_name: ui
     restart: always
