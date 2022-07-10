@@ -1,19 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -f ../docker-compose.yml
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
   labels:
+    # app: guestbook
     io.kompose.service: ui
-  name: ui
+  name: guestbook
 spec:
   ports:
-  - name: "8084"
-    port: 8084
-    targetPort: 8084
+  - port: 8084
+    protocol: TCP
+    targetPort: http-server
   selector:
+    # app: guestbook
     io.kompose.service: ui
-status:
-  loadBalancer: {}
+  type: LoadBalancer

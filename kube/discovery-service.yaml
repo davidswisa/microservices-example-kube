@@ -1,10 +1,6 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -f ../docker-compose.yml
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
   labels:
     io.kompose.service: discovery
   name: discovery
@@ -15,5 +11,4 @@ spec:
     targetPort: 5555
   selector:
     io.kompose.service: discovery
-status:
-  loadBalancer: {}
+

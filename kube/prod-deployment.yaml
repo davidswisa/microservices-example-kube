@@ -1,10 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -f ../docker-compose.yml
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
   labels:
     io.kompose.service: prod
   name: prod
@@ -16,12 +12,7 @@ spec:
   strategy: {}
   template:
     metadata:
-      annotations:
-        kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -f ../docker-compose.yml
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.network/test-network: "true"
         io.kompose.service: prod
     spec:
       containers:
@@ -36,6 +27,4 @@ spec:
           hostPort: 8080
         resources: {}
       restartPolicy: Always
-      serviceAccountName: ""
-      volumes: null
-status: {}
+

@@ -1,38 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -f ../docker-compose.yml
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
   labels:
+    # app: guestbook
     io.kompose.service: ui
+  # name: guestbook
   name: ui
 spec:
   replicas: 1
   selector:
     matchLabels:
+      # app:  guestbook
       io.kompose.service: ui
-  strategy: {}
   template:
     metadata:
-      annotations:
-        kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -f ../docker-compose.yml
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.network/test-network: "true"
+        # app: guestbook
+        # io.kompose.network/test-network: "true"
         io.kompose.service: ui
     spec:
       containers:
       - image: microservices-example-kube_ui:latest
         imagePullPolicy: "IfNotPresent"
+        # name: guestbook
         name: ui
         ports:
         - containerPort: 8084
-          hostPort: 8084
-        resources: {}
-      restartPolicy: Always
-      serviceAccountName: ""
-      volumes: null
-status: {}
+          name: http-server
+          protocol: TCP
