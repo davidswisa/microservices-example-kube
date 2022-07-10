@@ -3,7 +3,7 @@
 run-compose:
 	docker-compose up -d --build
 
-run:
+run: build
 	kubectl apply -f ./kube
 
 build:
