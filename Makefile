@@ -8,7 +8,11 @@ run: build
 	kubectl apply -f ./kube
 
 build:
-	docker-compose build
+	docker-compose build --no-cache
+
+.PHONY: rebuild-%
+rebuild-%:
+	docker-compose build --no-cache "$*"
 
 clean: kube-clean
 
