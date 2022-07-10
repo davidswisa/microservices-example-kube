@@ -9,9 +9,9 @@ import (
 	"os"
 	"strconv"
 
-	rsv "gitswarm.f5net.com/salton/reservations/pkg/reservation"
+	rsv "github.com/davidswisa/microservices-example-kube/pkg/reservation"
 
-	"gitswarm.f5net.com/salton/reservations/pkg/orm"
+	"github.com/davidswisa/microservices-example-kube/pkg/orm"
 
 	"github.com/segmentio/kafka-go"
 )

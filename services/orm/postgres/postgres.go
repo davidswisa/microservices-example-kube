@@ -7,7 +7,7 @@ import (
 	// "io/ioutil"
 	// "net/http"
 
-	"gitswarm.f5net.com/salton/reservations/pkg/reservation"
+	"github.com/davidswisa/microservices-example-kube/pkg/reservation"
 
 	_ "github.com/lib/pq"
 )

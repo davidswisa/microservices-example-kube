@@ -1,3 +1,6 @@
+# github.com/davidswisa/microservices-example-kube v0.0.0-20220710203052-0ed414c2b20a
+## explicit
+github.com/davidswisa/microservices-example-kube/pkg/reservation
 # github.com/golang/snappy v0.0.1
 github.com/golang/snappy
 # github.com/gorilla/mux v1.8.0
@@ -44,6 +47,3 @@ github.com/segmentio/kafka-go/protocol/produce
 github.com/segmentio/kafka-go/protocol/saslauthenticate
 github.com/segmentio/kafka-go/protocol/saslhandshake
 github.com/segmentio/kafka-go/sasl
-# gitswarm.f5net.com/salton/reservations v1.0.2
-## explicit
-gitswarm.f5net.com/salton/reservations/pkg/reservation
