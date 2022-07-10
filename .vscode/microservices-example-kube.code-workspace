@@ -4,7 +4,10 @@
 			"path": ".."
 		},
 		{
-			"path": "../ui"
+			"path": "../services/ui"
+		},
+		{
+			"path": "../services/orm"
 		}
 	],
 	"settings": {}

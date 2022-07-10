@@ -87,8 +87,8 @@ services:
     container_name: querier
     restart: always
     # restart: unless-stopped
-    depends_on: 
-      - discovery
+    # depends_on: 
+    #   - discovery
     ports:
     - '8081:8081'
     environment:
@@ -104,23 +104,23 @@ services:
     # restart: unless-stopped
     depends_on:
       - db
-      - discovery
+      # - discovery
     ports:
     - '5431:5431'
     networks:
       test-network:
         ipv4_address: 20.10.1.8
 
-  discovery:
-    build: ./services/discovery
-    container_name: discovery
-    restart: always
-    # restart: unless-stopped
-    ports:
-      - '5555:5555'
-    networks:
-      test-network:
-        ipv4_address: 20.10.1.9
+  # discovery:
+  #   build: ./services/discovery
+  #   container_name: discovery
+  #   restart: always
+  #   # restart: unless-stopped
+  #   ports:
+  #     - '5555:5555'
+  #   networks:
+  #     test-network:
+  #       ipv4_address: 20.10.1.9
 
   ui:
     build: 

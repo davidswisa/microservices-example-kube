@@ -2,10 +2,10 @@ package postgres
 
 import (
 	"database/sql"
-	"encoding/json"
+	// "encoding/json"
 	"fmt"
-	"io/ioutil"
-	"net/http"
+	// "io/ioutil"
+	// "net/http"
 
 	"gitswarm.f5net.com/salton/reservations/pkg/reservation"
 
@@ -20,6 +20,15 @@ type PGInfo struct {
 	User string `json:"user"`
 	SSL  string `json:"ssl"`
 }
+
+const (
+	pgHost     string = "db"
+	pgPort     int    = 5432
+	pgUser     string = "postgres"
+	pgPassword string = "postgres"
+	pgDatabase string = "postgres"
+	pgSslMode  string = "disable"
+)
 
 const (
 	sqlInsert = `INSERT INTO reservations (id, name, date, party, hour) VALUES($1, $2, $3, $4, $5)`
@@ -58,24 +67,33 @@ func New() (*Instance, error) {
 
 func (i *Instance) discover() error {
 	// TODO: Change to environment variable
-	res, err := http.Get("http://discovery:5555/postgres")
-	if err != nil {
-		return err
-	}
+	// res, err := http.Get("http://discovery:5555/postgres")
+	// if err != nil {
+	// 	return err
+	// }
 
-	defer res.Body.Close()
-	b, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		return err
+	// defer res.Body.Close()
+	// b, err := ioutil.ReadAll(res.Body)
+	// if err != nil {
+	// 	return err
+	// }
+	// pginfo := PGInfo{}
+
+	pgInfo := PGInfo{
+		DB:   pgDatabase,
+		Host: pgHost,
+		Pass: pgPassword,
+		Port: pgPort,
+		SSL:  pgSslMode,
+		User: pgUser,
 	}
-	pginfo := PGInfo{}
-	err = json.Unmarshal(b, &pginfo)
-	if err != nil {
-		return err
-	}
+	// err := json.Unmarshal(b, &pginfo)
+	// if err != nil {
+	// 	return err
+	// }
 
 	i.info = fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=%s",
-		pginfo.Host, pginfo.Port, pginfo.User, pginfo.Pass, pginfo.DB, pginfo.SSL)
+		pgInfo.Host, pgInfo.Port, pgInfo.User, pgInfo.Pass, pgInfo.DB, pgInfo.SSL)
 
 	return nil
 }
