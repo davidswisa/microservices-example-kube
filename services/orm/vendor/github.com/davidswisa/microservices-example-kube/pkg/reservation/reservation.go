@@ -34,6 +34,7 @@ func (r Reservation) Bytes() ([]byte, error) {
 // Print prints a reservation details
 func (r Reservation) Print() {
 	fmt.Println("RESERVATION : ")
+	fmt.Printf(" ID : %d\n", r.ID)
 	fmt.Printf(" Name : %s\n", r.Name)
 	fmt.Printf(" Party : %d\n", r.Party)
 	fmt.Printf(" Date : %s\n", r.Date)

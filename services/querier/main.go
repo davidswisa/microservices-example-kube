@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/rs/cors"
-	"gitswarm.f5net.com/salton/reservations/pkg/orm"
+	"github.com/davidswisa/microservices-example-kube/pkg/orm"
 )
 
 var (

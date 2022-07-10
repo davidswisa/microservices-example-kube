@@ -10,7 +10,7 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	rsv "gitswarm.f5net.com/salton/reservations/pkg/reservation"
+	rsv "github.com/davidswisa/microservices-example-kube/pkg/reservation"
 
 	"github.com/rs/cors"
 	kafka "github.com/segmentio/kafka-go"

@@ -1,6 +1,6 @@
+# github.com/davidswisa/microservices-example-kube v0.0.0-20220710203052-0ed414c2b20a
+## explicit
+github.com/davidswisa/microservices-example-kube/pkg/orm
 # github.com/rs/cors v1.7.0
 ## explicit
 github.com/rs/cors
-# gitswarm.f5net.com/salton/reservations v1.0.3
-## explicit
-gitswarm.f5net.com/salton/reservations/pkg/orm

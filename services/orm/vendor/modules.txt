@@ -1,3 +1,6 @@
+# github.com/davidswisa/microservices-example-kube v0.0.0-20220710203052-0ed414c2b20a
+## explicit
+github.com/davidswisa/microservices-example-kube/pkg/reservation
 # github.com/gorilla/mux v1.8.0
 ## explicit
 github.com/gorilla/mux
@@ -6,6 +9,3 @@ github.com/gorilla/mux
 github.com/lib/pq
 github.com/lib/pq/oid
 github.com/lib/pq/scram
-# gitswarm.f5net.com/salton/reservations v1.0.3
-## explicit
-gitswarm.f5net.com/salton/reservations/pkg/reservation
