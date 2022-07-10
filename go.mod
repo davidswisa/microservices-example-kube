@@ -1,3 +1,3 @@
-module gitswarm.f5net.com/salton/reservations
+module github.com/davidswisa/microservices-example-kube
 
-go 1.15
+go 1.17

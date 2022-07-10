@@ -1,4 +1,4 @@
-module discovery
+module prod
 
 go 1.15
 

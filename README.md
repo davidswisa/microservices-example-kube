@@ -2,39 +2,47 @@
 microservices-example-kube
 
 
+## How it all work
 
-steps:
-We used Kompose in order to convert the majority of the docker-compose file conveniently.
-
-Installing Kompose:
-```bash
-go get -u github.com/kubernetes/kompose
+```mermaid
+graph TD;
+GUI --> Producer;
+GUI --> Querier;
+Querier --> ORM;
+Kafka --> Producer;
+Kafka --> Consumer;
+ORM --> Database;
+Consumer --> ORM;
 ```
 
-follow:
-https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/
+## Service Table
+| Container | Port | Purpose  |
+| :---      | :-   | :- |
+| ui        | 8084 | gui |
+| cons      | --   | get messages (tasks) from kafka and forwards to orm |
+| orm       | 5431 | used as a mitigator for DB |
+| prod      | 8080 | receive http request from ui and create messages (tasks) via kafka |
+| querier   | 8081 | receive http request from ui and forwards a query via orm |
+<!-- | discovery | 5555 | receive registrations from all services and used for service discovery |  -->
+| kafka     | 9092, 8082, 8083 | message bus |
+| zookeeper | 2181 | ? |
+| db        | 5432 | data base |
 
-install k3s with docker as the container runtime:
+
+## Prereqwisit:
+
+### install k3s with docker as the container runtime:
+
 ```bash
 curl -sfL https://get.k3s.io | sh -s - --docker
 ```
 
-### Changes Notes:
+add 
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+to ~/.bashrc
 
-- Replace network api version to the default one:
-```yaml
-apiVersion: networking.k8s.io/v1
-```
+## Getting Started:
 
-- Replace all services image value:
-    - After using `docker-compose build` this change allows pulling from the local docker registry (when using docker as the container runtime)
-```yaml
-- image: microservices-example-kube_ui:latest
-  imagePullPolicy: "IfNotPresent"
-```
-
-- Add to deployment the port to expose out to the host:
-    - This allows access to the pods from the host machine.
-```yaml
-hostPort: 8080
+```bash
+make run
 ```

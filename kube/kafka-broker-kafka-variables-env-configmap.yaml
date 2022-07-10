@@ -18,7 +18,6 @@ data:
   KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
 kind: ConfigMap
 metadata:
-  creationTimestamp: null
   labels:
     io.kompose.service: kafka-kafka-broker-kafka-variables-env
   name: kafka-broker-kafka-variables-env

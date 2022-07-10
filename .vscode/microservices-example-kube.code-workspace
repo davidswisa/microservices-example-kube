@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../services/ui"
+		},
+		{
+			"path": "../services/orm"
+		}
+	],
+	"settings": {}
+}
