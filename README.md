@@ -37,6 +37,10 @@ Consumer --> ORM;
 curl -sfL https://get.k3s.io | sh -s - --docker
 ```
 
+add 
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+to ~/.bashrc
+
 ## Getting Started:
 
 ```bash
