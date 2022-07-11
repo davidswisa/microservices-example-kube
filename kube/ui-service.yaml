@@ -3,7 +3,8 @@ kind: Service
 metadata:
   labels:
     io.kompose.service: ui
-  name: guestbook
+  name: ui
+  # name: guestbook
 spec:
   ports:
   - port: 8084

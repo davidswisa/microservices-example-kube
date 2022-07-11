@@ -1,10 +1,13 @@
-.PHONY: run-compose run build clean
+.PHONY: run-compose run build clean apply
 
 run-compose:
 	docker-compose up -d --build
 
-run: build
+apply:
 	kubectl apply -f ./kube
+
+run: build apply
+	
 
 build:
 	docker rmi $$(docker images | grep 'microservices-example-kube') || true
@@ -12,8 +15,13 @@ build:
 
 .PHONY: rebuild-%
 rebuild-%:
-	docker rmi "microservices-example-kube-$*"
+	kubectl delete deployment "$*" || true
+	# sleep 15
+	./scripts/wait-for-pods.sh "$*"
+	docker rmi "microservices-example-kube_$*"
 	docker-compose build --no-cache "$*"
+	$(MAKE) apply
+
 
 clean: kube-clean
 	docker rmi $$(docker images | grep 'microservices-example-kube') || true
