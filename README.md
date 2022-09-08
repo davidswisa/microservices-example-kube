@@ -53,6 +53,11 @@ configure local kubctl to work with container k3s
 echo "export KUBECONFIG=/etc/rancher/k3s/k3s.yaml" >> ~/.bashrc
 ```
 
+load the config
+``` bash  
+exec bash
+```
+
 ## Getting Started:
 
 ```bash
