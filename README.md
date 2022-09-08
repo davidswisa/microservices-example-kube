@@ -47,19 +47,27 @@ For the services we used `k3s` with docker as the container runtime
 curl -sfL https://get.k3s.io | sh -s - --docker
 ```
 
-configure local kubctl to work with container k3s  
+Configure local kubctl to work with container k3s  
 
 ``` bash  
 echo "export KUBECONFIG=/etc/rancher/k3s/k3s.yaml" >> ~/.bashrc
 ```
 
-load the config
+Load the config
 ``` bash  
 exec bash
 ```
 
 ## Getting Started:
 
+To run the services:  
+
 ```bash
 make run
+```
+
+Now you can open the UI using this link:  
+
+```html
+http://<MACHINE-IP>:8084
 ```
