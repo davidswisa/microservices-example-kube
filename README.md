@@ -35,14 +35,13 @@ Consumer --> ORM;
 
 ## Prerequisite:
 
-### Docker-compose 
+### K3S:
 
-In order to simplify the containers build process we decided to use `docker-compose` make sure to have it installed.  
+In order to simplify the containers build process we decided to use `kubernetes`.  
+The `k3s` is a lite wait kubernetes with docker as the container runtime.  
 
-### kubernetes:
 
-For the services we used `k3s` with docker as the container runtime
-
+To install `k3s`:  
 ``` bash
 curl -sfL https://get.k3s.io | sh -s - --docker
 ```
