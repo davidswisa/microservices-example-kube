@@ -2,6 +2,8 @@
 
 ## About the project:  
 
+This project is a kubernetes translation derived from this [project](https://github.com/davidswisa/microservices-example).
+
 This simple reservation application uses a queue manager for all reservation tasks like create, update, and delete.
 And use a more direct approach to get the data from the DB.
 
@@ -75,3 +77,14 @@ Now you can open the UI using this link:
 ```html
 http://<MACHINE-IP>:8084
 ```
+
+## How can be extended:  
+
+* can add upgared flow for a new pod version
+* can be a base for helm charts project  
+
+
+## For further reading:  
+
+* [converting docker-compose to kubernetes](https://kompose.io/)  
+
