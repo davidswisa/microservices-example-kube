@@ -59,6 +59,11 @@ exec bash
 
 ## Getting Started:
 
+Get the source code:
+```bash
+git clone https://github.com/davidswisa/microservices-example-kube.git
+```
+
 To run the services:  
 
 ```bash
