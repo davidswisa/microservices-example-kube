@@ -4,7 +4,6 @@ metadata:
   labels:
     io.kompose.service: ui
   name: ui
-  # name: guestbook
 spec:
   ports:
   - port: 8084
